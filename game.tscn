@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=3 uid="uid://dev7lq6r3vnd2"]
+
+[ext_resource type="Texture2D" uid="uid://cgapt7dc4vjiv" path="res://assets/images/grass-background.jpg" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bjudg20evacmy" path="res://grass_background.gd" id="2_e2o6t"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GrassBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_80nbo")
+script = ExtResource("2_e2o6t")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MainUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContent" type="HBoxContainer" parent="UI/MainUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridPanel" type="Control" parent="UI/MainUI/MainContent"]
+custom_minimum_size = Vector2(720, 540)
+layout_mode = 2
+
+[node name="TrackGrid" type="GridContainer" parent="UI/MainUI/MainContent/GridPanel"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 12
+
+[node name="ColorRect" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="UI/MainUI/MainContent/GridPanel/TrackGrid"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = Color(6.26144e-05, 0.000116626, 0.000234923, 1)
+
+[node name="RightPanel" type="VBoxContainer" parent="UI/MainUI/MainContent"]
+custom_minimum_size = Vector2(240, 540)
+layout_mode = 2
+
+[node name="ItemMenuTabs" type="TabContainer" parent="UI/MainUI/MainContent/RightPanel"]
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="TrackPiecesTab" type="VBoxContainer" parent="UI/MainUI/MainContent/RightPanel/ItemMenuTabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="CarsTab" type="VBoxContainer" parent="UI/MainUI/MainContent/RightPanel/ItemMenuTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BottomControls" type="HBoxContainer" parent="UI/MainUI/MainContent/RightPanel"]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+
+[node name="Speedometer" type="TextureProgressBar" parent="UI/MainUI/MainContent/RightPanel/BottomControls"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StartRaceButton" type="Button" parent="UI/MainUI/MainContent/RightPanel/BottomControls"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start Race"

@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="Loop Rama!"
+run/main_scene="uid://dev7lq6r3vnd2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="viewport"
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true
