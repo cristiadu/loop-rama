@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dev7lq6r3vnd2"]
 
-[ext_resource type="Texture2D" uid="uid://cgapt7dc4vjiv" path="res://assets/images/grass-background.jpg" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://n4bvwd5vn2w5" path="res://assets/images/Table.png" id="1_80nbo"]
 
 [node name="Game" type="Node2D"]
 
