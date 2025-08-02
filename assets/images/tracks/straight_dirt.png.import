@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bipixfmdhyqpe"
-path="res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"
+uid="uid://dcpgg0br611pa"
+path="res://.godot/imported/straight_dirt.png-f52646f3018266ab7cb51bf267e7d972.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/park.png"
-dest_files=["res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"]
+source_file="res://assets/images/tracks/straight_dirt.png"
+dest_files=["res://.godot/imported/straight_dirt.png-f52646f3018266ab7cb51bf267e7d972.ctex"]
 
 [params]
 

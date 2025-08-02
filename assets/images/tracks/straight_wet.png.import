@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwv45myuj336j"
-path="res://.godot/imported/straight-wet.png-b686c93f4230c67a379a434e541bce91.ctex"
+path="res://.godot/imported/straight_wet.png-66621da7d50b06af959574158726e234.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tracks/straight-wet.png"
-dest_files=["res://.godot/imported/straight-wet.png-b686c93f4230c67a379a434e541bce91.ctex"]
+source_file="res://assets/images/tracks/straight_wet.png"
+dest_files=["res://.godot/imported/straight_wet.png-66621da7d50b06af959574158726e234.ctex"]
 
 [params]
 

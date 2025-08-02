@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcpgg0br611pa"
-path="res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"
+uid="uid://bhlhytyugioe6"
+path="res://.godot/imported/Carred.png-f788da662cfc7670377f015e39636252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tracks/straight_sand.png"
-dest_files=["res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"]
+source_file="res://assets/images/Carred.png"
+dest_files=["res://.godot/imported/Carred.png-f788da662cfc7670377f015e39636252.ctex"]
 
 [params]
 
