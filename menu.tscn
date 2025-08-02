@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb3uxatfyturd"]
+[gd_scene load_steps=5 format=3 uid="uid://cb3uxatfyturd"]
 
 [ext_resource type="Script" uid="uid://tj6n11f4oan4" path="res://tracks_menu.gd" id="1_mae5d"]
 [ext_resource type="Script" uid="uid://byixniwsoqhb" path="res://cars_menu.gd" id="2_4hy44"]
 [ext_resource type="Script" uid="uid://6mwrigy8jj7c" path="res://start_race.gd" id="3_ytr4m"]
+[ext_resource type="PackedScene" uid="uid://bm8x7oap2qk1f" path="res://car_option.tscn" id="4_car_option"]
 
 [node name="Menu" type="VBoxContainer"]
 custom_minimum_size = Vector2(228, 720)
@@ -45,6 +46,34 @@ visible = false
 layout_mode = 2
 script = ExtResource("2_4hy44")
 metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemMenuTabs/CarsMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemMenuTabs/CarsMenu/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CarsVBox" type="VBoxContainer" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BlueRacerOption" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer/CarsVBox" instance=ExtResource("4_car_option")]
+layout_mode = 2
+
+[node name="GreenBeastOption" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer/CarsVBox" instance=ExtResource("4_car_option")]
+layout_mode = 2
+
+[node name="PinkLightningOption" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer/CarsVBox" instance=ExtResource("4_car_option")]
+layout_mode = 2
+
+[node name="RedStormOption" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer/CarsVBox" instance=ExtResource("4_car_option")]
+layout_mode = 2
 
 [node name="BottomControls" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(228, 60)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://caci8s51r7i5f"]
+
+[ext_resource type="Script" uid="uid://bcarscript123gd" path="res://car.gd" id="1_car_script"]
+
+[node name="Car" type="Node2D"]
+script = ExtResource("1_car_script")
+
+[node name="CarSprite" type="Sprite2D" parent="."]
+rotation = 1.5708
