@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwv45myuj336j"
-path="res://.godot/imported/straight-wet.png-b686c93f4230c67a379a434e541bce91.ctex"
+uid="uid://crhuhxbowlkhh"
+path="res://.godot/imported/straight_road.png-740aebe3479573ab65cc4857e811214e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tracks/straight-wet.png"
-dest_files=["res://.godot/imported/straight-wet.png-b686c93f4230c67a379a434e541bce91.ctex"]
+source_file="res://assets/images/tracks/straight_road.png"
+dest_files=["res://.godot/imported/straight_road.png-740aebe3479573ab65cc4857e811214e.ctex"]
 
 [params]
 

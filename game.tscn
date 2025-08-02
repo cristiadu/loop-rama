@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dev7lq6r3vnd2"]
+[gd_scene load_steps=5 format=3 uid="uid://dev7lq6r3vnd2"]
 
-[ext_resource type="Texture2D" uid="uid://cl4ni4dkhar3c" path="res://assets/images/park.png" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://boetqyvtr47yp" path="res://game.gd" id="1_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dlf41bnj1s02a" path="res://assets/images/park.png" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://0tbn0455v0gi" path="res://track_grid.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cb3uxatfyturd" path="res://menu.tscn" id="3_feb5d"]
 
 [node name="LoopRamaGame" type="Node2D"]
+script = ExtResource("1_fc0e3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -16,17 +18,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GrassBackground" type="Sprite2D" parent="UI/MainUI"]
+[node name="ParkBackground" type="Sprite2D" parent="UI/MainUI"]
 position = Vector2(640, 360)
-scale = Vector2(2, 1)
-texture = ExtResource("1_80nbo")
+texture = ExtResource("1_feb5d")
 
 [node name="MainContent" type="HBoxContainer" parent="UI/MainUI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1284.0
+offset_bottom = 720.0
 
-[node name="TrackGrid" parent="UI/MainUI/MainContent" instance=ExtResource("2_e2o6t")]
+[node name="TrackArea" parent="UI/MainUI/MainContent" instance=ExtResource("2_e2o6t")]
 layout_mode = 2
 
 [node name="Menu" parent="UI/MainUI/MainContent" instance=ExtResource("3_feb5d")]

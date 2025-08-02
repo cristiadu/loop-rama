@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba4j20nx1f44r"
-path="res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"
+uid="uid://cqfaod47r2j8i"
+path="res://.godot/imported/curve_road.png-e6c7b42022f4e6d86b28be4cd3267ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tracks/straight_sand.png"
-dest_files=["res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"]
+source_file="res://assets/images/tracks/curve_road.png"
+dest_files=["res://.godot/imported/curve_road.png-e6c7b42022f4e6d86b28be4cd3267ba1.ctex"]
 
 [params]
 

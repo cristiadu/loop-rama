@@ -1,78 +1,16 @@
 [gd_scene format=3 uid="uid://0tbn0455v0gi"]
 
 [node name="TrackGridContainer" type="Control"]
-custom_minimum_size = Vector2(960, 640)
+custom_minimum_size = Vector2(1048, 720)
 layout_mode = 3
 anchors_preset = 0
-offset_left = -6.0
-offset_top = 10.0
-offset_right = 954.0
-offset_bottom = 650.0
+offset_right = 960.0
+offset_bottom = 720.0
 
 [node name="TrackGrid" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 60.0
-offset_right = 880.0
-offset_bottom = 580.0
-columns = 50
-
-[node name="ColorRect" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect2" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect3" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect4" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect5" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect6" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect7" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect8" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect9" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect10" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect11" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
-
-[node name="ColorRect12" type="ColorRect" parent="TrackGrid"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-color = Color(0.4, 1, 0.4, 0.6)
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 1014.0
+offset_bottom = 640.0
+columns = 55
