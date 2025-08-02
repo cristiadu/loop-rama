@@ -5,16 +5,16 @@ extends VBoxContainer
 
 const INITIAL_TRACK_PIECE_COUNT = 15
 
+# Draw initial track pieces in the track menu.
 func generate_track_piece_options():
   # Call track piece scene to generate track pieces in a grid layout
   for i in INITIAL_TRACK_PIECE_COUNT:
-    var track_piece = track_piece_scene.instantiate()
-    
-    # Make sure pieces are clickable/draggable
-    track_piece.mouse_filter = Control.MOUSE_FILTER_PASS
-    
-    grid_container.add_child(track_piece)
-    track_piece.setup_random_piece()
-    
-    # Connect signals for drag and drop functionality (to be implemented later)
-    # track_piece.gui_input.connect(_on_track_piece_input.bind(track_piece))
+    draw_track_piece()
+
+# Draw a track piece in the track menu.
+func draw_track_piece():
+  var track_piece = track_piece_scene.instantiate()
+  grid_container.add_child(track_piece)
+  track_piece.setup_random_piece()
+  # Connect signals for drag and drop functionality (to be implemented later)
+  #track_piece.gui_input.connect(_on_track_piece_input.bind(track_piece))
