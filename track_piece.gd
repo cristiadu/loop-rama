@@ -11,6 +11,7 @@ enum TrackPieceType {
 
 enum TerrainType {
     DIRT,
+    SAND,
     SNOW,
     ROAD,
     WET,
@@ -28,21 +29,24 @@ var current_rotation: int = 0 # Rotation in degrees (must be multiple of 90)
 static var track_piece_configs: Dictionary = {
     TrackPieceType.STRAIGHT: {
         TerrainType.DIRT: {"path": "res://assets/images/tracks/straight_dirt.png", "width": 1, "height": 2},
+        TerrainType.SAND: {"path": "res://assets/images/tracks/straight_sand.png", "width": 1, "height": 2},
         TerrainType.SNOW: {"path": "res://assets/images/tracks/straight_snow.png", "width": 1, "height": 2},
         TerrainType.ROAD: {"path": "res://assets/images/tracks/straight_road.png", "width": 1, "height": 2},
         TerrainType.WET: {"path": "res://assets/images/tracks/straight_wet.png", "width": 1, "height": 2},
     },
     TrackPieceType.CURVE: {
         TerrainType.DIRT: {"path": "res://assets/images/tracks/curve_dirt.png", "width": 2, "height": 2},
+        TerrainType.SAND: {"path": "res://assets/images/tracks/curve_sand.png", "width": 2, "height": 2},
         TerrainType.SNOW: {"path": "res://assets/images/tracks/curve_snow.png", "width": 2, "height": 2},
         TerrainType.ROAD: {"path": "res://assets/images/tracks/curve_road.png", "width": 2, "height": 2},
         TerrainType.WET: {"path": "res://assets/images/tracks/curve_wet.png", "width": 2, "height": 2},
     },
     TrackPieceType.S_SHAPED_ROAD: {
-        TerrainType.DIRT: {"path": "res://assets/images/tracks/s_shaped_road_dirt.png", "width": 2, "height": 2},
-        TerrainType.SNOW: {"path": "res://assets/images/tracks/s_shaped_road_snow.png", "width": 2, "height": 2},
-        TerrainType.ROAD: {"path": "res://assets/images/tracks/s_shaped_road_road.png", "width": 2, "height": 2},
-        TerrainType.WET: {"path": "res://assets/images/tracks/s_shaped_road_wet.png", "width": 2, "height": 2},
+        TerrainType.DIRT: {"path": "res://assets/images/tracks/s_dirt.png", "width": 2, "height": 2},
+        TerrainType.SAND: {"path": "res://assets/images/tracks/s_sand.png", "width": 2, "height": 2},
+        TerrainType.SNOW: {"path": "res://assets/images/tracks/s_snow.png", "width": 2, "height": 2},
+        TerrainType.ROAD: {"path": "res://assets/images/tracks/s_road.png", "width": 2, "height": 2},
+        TerrainType.WET: {"path": "res://assets/images/tracks/s_wet.png", "width": 2, "height": 2},
     },
 }
 
@@ -50,9 +54,9 @@ static var track_piece_configs: Dictionary = {
 
 # Setup a random piece type and terrain.
 func setup_random_piece():
-  var piece_type = TrackPieceType.values()[randi() % TrackPieceType.size()]
-  var terrain_type = TerrainType.values()[randi() % TerrainType.size()]
-  setup_piece(piece_type, terrain_type)
+  var random_piece_type = TrackPieceType.values()[randi() % TrackPieceType.size()]
+  var random_terrain_type = TerrainType.values()[randi() % TerrainType.size()]
+  setup_piece(random_piece_type, random_terrain_type)
 
 # Initialize the track piece with type and terrain
 func setup_piece(type: TrackPieceType, terrain: TerrainType, initial_rotation: int = 0):
