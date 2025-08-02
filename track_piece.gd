@@ -39,10 +39,10 @@ static var track_piece_configs: Dictionary = {
         TerrainType.WET: {"path": "res://assets/images/tracks/curve_wet.png", "width": 2, "height": 2},
     },
     TrackPieceType.S_SHAPED_ROAD: {
-        TerrainType.DIRT: {"path": "res://assets/images/tracks/s_shaped_road_dirt.png", "width": 2, "height": 2},
-        TerrainType.SNOW: {"path": "res://assets/images/tracks/s_shaped_road_snow.png", "width": 2, "height": 2},
-        TerrainType.ROAD: {"path": "res://assets/images/tracks/s_shaped_road_road.png", "width": 2, "height": 2},
-        TerrainType.WET: {"path": "res://assets/images/tracks/s_shaped_road_wet.png", "width": 2, "height": 2},
+        TerrainType.DIRT: {"path": "res://assets/images/tracks/s_dirt.png", "width": 2, "height": 2},
+        TerrainType.SNOW: {"path": "res://assets/images/tracks/s_snow.png", "width": 2, "height": 2},
+        TerrainType.ROAD: {"path": "res://assets/images/tracks/s_road.png", "width": 2, "height": 2},
+        TerrainType.WET: {"path": "res://assets/images/tracks/s_wet.png", "width": 2, "height": 2},
     },
 }
 
