@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlf41bnj1s02a"
-path="res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"
+uid="uid://ba4j20nx1f44r"
+path="res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/park.png"
-dest_files=["res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"]
+source_file="res://assets/images/tracks/straight_sand.png"
+dest_files=["res://.godot/imported/straight_sand.png-63e8827c04c6c493ac0354c0eb976a47.ctex"]
 
 [params]
 

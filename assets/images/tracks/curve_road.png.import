@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlf41bnj1s02a"
-path="res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"
+uid="uid://cqfaod47r2j8i"
+path="res://.godot/imported/curve_road.png-e6c7b42022f4e6d86b28be4cd3267ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/park.png"
-dest_files=["res://.godot/imported/park.png-b1c6be5bfae6ea43a4ff8e76b3062976.ctex"]
+source_file="res://assets/images/tracks/curve_road.png"
+dest_files=["res://.godot/imported/curve_road.png-e6c7b42022f4e6d86b28be4cd3267ba1.ctex"]
 
 [params]
 
