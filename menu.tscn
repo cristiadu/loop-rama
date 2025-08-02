@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cb3uxatfyturd"]
+
+[node name="Menu" type="VBoxContainer"]
+custom_minimum_size = Vector2(320, 720)
+
+[node name="ItemMenuTabs" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(320, 580)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="TrackPiecesTab" type="VBoxContainer" parent="ItemMenuTabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="CarsTab" type="VBoxContainer" parent="ItemMenuTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BottomControls" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 2
+
+[node name="Speedometer" type="TextureProgressBar" parent="BottomControls"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StartRaceButton" type="Button" parent="BottomControls"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start Race"
