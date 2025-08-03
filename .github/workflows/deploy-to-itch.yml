@@ -18,8 +18,6 @@ jobs:
     - name: build-windows
       run: |
         godot -v -e --quit --headless
-        mkdir -v -p ~/.local/share/godot/export_templates
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/windows
         godot -v --export-release --headless "windows" build/windows/$PROJECT_NAME.exe
     - name: itchio-windows
@@ -39,8 +37,6 @@ jobs:
     - name: build-linux
       run: |
         godot -v -e --quit --headless
-        mkdir -v -p ~/.local/share/godot/export_templates
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/linux
         godot -v --export-release --headless "linux" build/linux/$PROJECT_NAME.x86_64
     - name: itchio-linux
@@ -60,8 +56,6 @@ jobs:
     - name: build-mac
       run: |
         godot -v -e --quit --headless
-        mkdir -v -p ~/.local/share/godot/export_templates
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/mac
         godot -v --export-release --headless "mac" build/mac/$PROJECT_NAME.zip
     - name: itchio-mac
@@ -81,8 +75,6 @@ jobs:
     - name: build-web
       run: |
         godot -v -e --quit --headless
-        mkdir -v -p ~/.local/share/godot/export_templates
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         mkdir -v -p build/web
         godot -v --export-release --headless "web" build/web/index.html
     - name: itchio-web
