@@ -51,10 +51,10 @@ func update_speed_stars(rating: int):
   for i in range(5):
     var star = speed_stars[i]
     if i < rating:
-      star.text = "★"
+      star.text = "●"  # Filled circle (more reliable than ★)
       star.modulate = Color.YELLOW
     else:
-      star.text = "☆"
+      star.text = "○"  # Empty circle (more reliable than ☆)
       star.modulate = Color.GRAY
 
 func update_traction_stars(rating: int):
@@ -69,10 +69,10 @@ func update_traction_stars(rating: int):
   for i in range(5):
     var star = traction_stars[i]
     if i < rating:
-      star.text = "★"
+      star.text = "●"  # Filled circle (more reliable than ★)
       star.modulate = Color.CYAN
     else:
-      star.text = "☆"
+      star.text = "○"  # Empty circle (more reliable than ☆)
       star.modulate = Color.GRAY
 
 func set_selected(selected: bool):
