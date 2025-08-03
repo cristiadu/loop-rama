@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqr8v4x6qj5hk"]
+
+[ext_resource type="Script" path="res://track_piece.gd" id="1_track_piece"]
+[ext_resource type="PackedScene" uid="uid://bv8yan2p4q7kr" path="res://rotation_buttons.tscn" id="2_rotation_buttons"]
+
+[node name="TrackPieceOption" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="TrackPiece" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TrackPieceControl" type="Control" parent="TrackPiece"]
+layout_mode = 2
+z_index = 1000
+z_as_relative = false
+script = ExtResource("1_track_piece")
+
+[node name="TrackPieceSprite" type="Sprite2D" parent="TrackPiece/TrackPieceControl"]
+
+[node name="RotationButtons" parent="TrackPiece/TrackPieceControl" instance=ExtResource("2_rotation_buttons")]
+visible = false
+z_index = 2000
+z_as_relative = false
+layout_mode = 0

@@ -1,16 +1,43 @@
-[gd_scene format=3 uid="uid://0tbn0455v0gi"]
+[gd_scene load_steps=4 format=3 uid="uid://0tbn0455v0gi"]
+
+[ext_resource type="Script" uid="uid://b0mllpc20ofi" path="res://track_grid.gd" id="1_track_grid"]
+[ext_resource type="Script" uid="uid://cpdf06tc3omq7" path="res://simple_grid.gd" id="4_simple_grid"]
+[ext_resource type="PackedScene" uid="uid://bqc8x7y2n8kqp" path="res://grid_overlay.tscn" id="5_grid_overlay"]
 
 [node name="TrackGridContainer" type="Control"]
 custom_minimum_size = Vector2(1048, 720)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 960.0
-offset_bottom = 720.0
+offset_right = 902.0
+offset_bottom = 608.0
+script = ExtResource("1_track_grid")
 
-[node name="TrackGrid" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 128.0
+[node name="TrackGrid" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 88.0
 offset_top = 96.0
-offset_right = 1014.0
-offset_bottom = 640.0
-columns = 55
+offset_right = 952.0
+offset_bottom = 624.0
+
+[node name="GridLines" type="Control" parent="TrackGrid"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_simple_grid")
+
+[node name="GridOverlay" parent="TrackGrid" instance=ExtResource("5_grid_overlay")]
+
+[node name="GridBorder" type="ReferenceRect" parent="TrackGrid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_width = 2.0
