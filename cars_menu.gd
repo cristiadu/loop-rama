@@ -55,11 +55,6 @@ func update_selection_display():
     var is_selected = car_option.car_type == selected_car
     car_option.set_selected(is_selected)
 
-func update_selected_car_label():
-  if selected_car_label and Car.car_configs.has(selected_car):
-    var car_name = Car.car_configs[selected_car].name
-    selected_car_label.text = "Selected Car: " + car_name
-
 # Get current selected car data
 func get_selected_car_data() -> Car.CarData:
   for car_option in car_options:
