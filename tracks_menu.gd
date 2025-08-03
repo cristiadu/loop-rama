@@ -24,6 +24,13 @@ func create_track_piece_option():
     var track_piece = track_piece_container.get_node("TrackPiece/TrackPieceControl")
     track_piece.setup_random_piece()
 
+# Create a track piece option with specific configuration
+func create_specific_track_piece_option(piece_type: TrackPiece.TrackPieceType, terrain_type: TrackPiece.TerrainType, rotation: int = 0):
+    var track_piece_container = track_piece_scene.instantiate()
+    grid_container.add_child(track_piece_container)
+    var track_piece = track_piece_container.get_node("TrackPiece/TrackPieceControl")
+    track_piece.setup_piece(piece_type, terrain_type, rotation)
+
 func create_start_flag_option():
     var start_flag_container = start_flag_piece_scene.instantiate()
     grid_container.add_child(start_flag_container)

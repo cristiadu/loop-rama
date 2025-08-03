@@ -10,6 +10,8 @@ extends Node2D
 var current_car_sprite: Car
 
 func _ready():
+    # Add to group so other nodes can find this game node
+    add_to_group("game")
     start_game()
 
 func start_game():

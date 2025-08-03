@@ -15,6 +15,9 @@ func _ready():
     setup_drop_functionality()
     # Add to group so track pieces can find this grid
     add_to_group("track_grid")
+    
+    # Enable input handling for delete key
+    set_process_unhandled_input(true)
 
 func setup_drop_functionality():
     # Enable drop functionality for game logic
@@ -54,8 +57,13 @@ func _can_drop_data(drop_position: Vector2, data) -> bool:
     
     # Check if piece fits within grid bounds (including its full size)
     var fits_in_grid = _piece_fits_in_grid(grid_pos, piece_info)
-    var has_space = _has_space_for_piece(grid_pos, piece_info)
+    var has_space = true
     var start_flag_ok = true
+    
+    # Start flags can overlap with existing pieces (they go on top)
+    # Regular track pieces need to check for space
+    if piece_type != "start_flag_piece":
+        has_space = _has_space_for_piece(grid_pos, piece_info)
     
     # Special check for start flag - only one allowed
     if piece_type == "start_flag_piece" and start_flag_placed:
@@ -85,56 +93,85 @@ func _drop_data(drop_position: Vector2, data):
     var grid_pos = _calculate_grid_position(drop_position, piece_info)
     var snap_position = Vector2(grid_pos.x * GRID_SIZE, grid_pos.y * GRID_SIZE)
     
-    # Get the original track piece control from the dragged data
-    var track_piece_control = data.get("track_piece_control")
-    if track_piece_control == null:
-        return
+    var new_container
+    var control_node
     
-    # Create a new TrackPiece instance for the grid (with rotation buttons)
-    var track_piece_scene = preload("res://track_piece.tscn")
-    var new_track_piece_container = track_piece_scene.instantiate()
-    var new_track_piece_control = new_track_piece_container.get_node("TrackPieceContainer/TrackPieceControl")
-    
-    # Set up the new piece with the same configuration as the original
-    new_track_piece_control.setup_piece(
-        track_piece_control.piece_type,
-        track_piece_control.terrain_type,
-        track_piece_control.current_rotation
-    )
-    
-    # Add to grid and position
-    track_grid.add_child(new_track_piece_container)
-    new_track_piece_container.position = snap_position
-    
-    # Remove the original from menu (since drag was successful)
-    var original_container = data.get("original_node")
-    if original_container and original_container.get_parent():
-        original_container.get_parent().remove_child(original_container)
-        original_container.queue_free()
-    
-    # Disable drag for placed pieces but allow rotation button interaction
-    if new_track_piece_control.has_method("disable_drag_only"):
-        new_track_piece_control.disable_drag_only()
+    if piece_type == "start_flag_piece":
+        # Handle start flag pieces
+        var original_start_flag = data.get("original_node")
+        if original_start_flag == null:
+            return
+        
+        # Create a new start flag instance for the grid
+        var start_flag_scene = preload("res://start_flag_piece.tscn")
+        new_container = start_flag_scene.instantiate()
+        control_node = new_container.get_node("StartFlagControl")
+        
+        # Set up the start flag (no rotation for start flags)
+        control_node.setup_start_flag_piece()
+        
+        # Add to grid and position
+        track_grid.add_child(new_container)
+        new_container.position = snap_position
+        
+        # Create and position a car at the start flag location
+        _create_car_for_start_flag(control_node, snap_position)
+        
+        # Remove original from menu
+        if original_start_flag.get_parent():
+            original_start_flag.get_parent().remove_child(original_start_flag)
+            original_start_flag.queue_free()
+        
+        # Enable selection for placed start flag
+        control_node.disable_drag_only()
     else:
-        # Fallback: set mouse filter but this might block rotation buttons
-        new_track_piece_control.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    
-    # Use the new track piece control for further operations
-    track_piece_control = new_track_piece_control
+        # Handle track pieces
+        var track_piece_control = data.get("track_piece_control")
+        if track_piece_control == null:
+            return
+        
+        # Create a new TrackPiece instance for the grid (with rotation buttons)
+        var track_piece_scene = preload("res://track_piece.tscn")
+        new_container = track_piece_scene.instantiate()
+        control_node = new_container.get_node("TrackPieceContainer/TrackPieceControl")
+        
+        # Set up the new piece with the same configuration as the original
+        control_node.setup_piece(
+            track_piece_control.piece_type,
+            track_piece_control.terrain_type,
+            track_piece_control.current_rotation
+        )
+        
+        # Add to grid and position
+        track_grid.add_child(new_container)
+        new_container.position = snap_position
+        
+        # Remove the original from menu (since drag was successful)
+        var original_container = data.get("original_node")
+        if original_container and original_container.get_parent():
+            original_container.get_parent().remove_child(original_container)
+            original_container.queue_free()
+        
+        # Disable drag for placed pieces but allow rotation button interaction
+        if control_node.has_method("disable_drag_only"):
+            control_node.disable_drag_only()
+        else:
+            # Fallback: set mouse filter but this might block rotation buttons
+            control_node.mouse_filter = Control.MOUSE_FILTER_IGNORE
     
     # Track the placed piece with grid information using actual dimensions
     var width_units = piece_info.get("width_units", 1)
     var height_units = piece_info.get("height_units", 1)
     
     # Use sprite-based dimensions from the piece if available (accounts for rotation)
-    if track_piece_control.has_method("get_rotated_size"):
-        var rotated_size = track_piece_control.get_rotated_size()
+    if control_node.has_method("get_rotated_size"):
+        var rotated_size = control_node.get_rotated_size()
         width_units = rotated_size.x
         height_units = rotated_size.y
     
     var placed_piece_data = {
-        "node": new_track_piece_container,
-        "track_piece_control": track_piece_control,
+        "node": new_container,
+        "track_piece_control": control_node,
         "grid_position": grid_pos,
         "pixel_position": snap_position,
         "piece_info": piece_info,
@@ -294,9 +331,9 @@ func get_placed_pieces() -> Array[Dictionary]:
 # Handle piece selection - deselect all other pieces
 func on_piece_selected(selected_piece):
     for placed_piece in placed_pieces:
-        var track_piece_control = placed_piece.get("track_piece_control")
-        if track_piece_control and track_piece_control != selected_piece and track_piece_control.has_method("deselect"):
-            track_piece_control.deselect()
+        var piece_control = placed_piece.get("track_piece_control")
+        if piece_control and piece_control != selected_piece and piece_control.has_method("deselect"):
+            piece_control.deselect()
 
 # Check if track has required pieces for racing
 func is_track_ready_for_race() -> bool:
@@ -319,3 +356,89 @@ func _on_mouse_exited():
     # Only hide if we're currently showing overlay (during a drag)
     if grid_overlay and grid_overlay.is_showing_overlay:
         _hide_overlay()
+
+# Create a car for the start flag at the specified position
+func _create_car_for_start_flag(start_flag_control: StartFlagPiece, position: Vector2):
+    # Get the selected car type from the game
+    var game_node = get_tree().get_first_node_in_group("game")
+    if not game_node:
+        push_error("Could not find game node to get selected car")
+        return
+    
+    var cars_menu = game_node.get_node("UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/ItemMenuTabs/Cars")
+    if not cars_menu:
+        push_error("Could not find cars menu")
+        return
+    
+    # Create a car instance
+    const CAR_SCENE = preload("res://car.tscn")
+    var car_instance = CAR_SCENE.instantiate()
+    
+    # Set up the car with the selected type
+    car_instance.setup_car(cars_menu.selected_car)
+    
+    # Position the car at the start flag location (center of the grid cell)
+    car_instance.position = Vector2(position.x + GRID_SIZE / 2, position.y + GRID_SIZE / 2)
+    
+    # Add car to the track grid
+    track_grid.add_child(car_instance)
+    
+    # Associate the car with the start flag
+    start_flag_control.set_associated_car(car_instance)
+
+# Handle input for deleting selected pieces
+func _unhandled_input(event):
+    if event is InputEventKey and event.pressed:
+        if event.keycode == KEY_DELETE or event.keycode == KEY_BACKSPACE:
+            delete_selected_piece()
+
+# Delete the currently selected piece and return it to the menu
+func delete_selected_piece():
+    for placed_piece in placed_pieces:
+        var piece_control = placed_piece.get("track_piece_control")
+        if piece_control and piece_control.is_selected:
+            var piece_node = placed_piece.get("node")
+            var piece_type = placed_piece.get("type")
+            
+            if piece_node:
+                # If it's a start flag, remove the associated car first
+                if piece_type == "start_flag_piece" and piece_control.has_method("remove_associated_car"):
+                    piece_control.remove_associated_car()
+                
+                # Return piece to menu before removing it
+                return_piece_to_menu(piece_control, piece_type)
+                remove_piece(piece_node)
+                break
+
+# Return a piece to the tracks menu
+func return_piece_to_menu(piece_control, piece_type: String):
+    # Get reference to the tracks menu through the game node
+    var game_node = get_tree().get_first_node_in_group("game")
+    if not game_node:
+        # Fallback: traverse up the scene tree to find the game node
+        var current = self
+        while current and current.name != "LoopRamaGame":
+            current = current.get_parent()
+        game_node = current
+    
+    if not game_node:
+        push_error("Could not find game node to access tracks menu")
+        return
+    
+    var tracks_menu = game_node.get_node("UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/ItemMenuTabs/Tracks")
+    if not tracks_menu:
+        push_error("Could not find tracks menu")
+        return
+    
+    # Return piece based on its type
+    if piece_type == "start_flag_piece":
+        # Return start flag to menu
+        tracks_menu.create_start_flag_option()
+    else:
+        # Return track piece to menu with same configuration
+        if piece_control and piece_control.has_method("get_piece_info"):
+            tracks_menu.create_specific_track_piece_option(
+                piece_control.piece_type,
+                piece_control.terrain_type,
+                piece_control.current_rotation
+            )
