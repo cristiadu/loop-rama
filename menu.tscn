@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb3uxatfyturd"]
+[gd_scene load_steps=12 format=3 uid="uid://cb3uxatfyturd"]
 
 [ext_resource type="Script" uid="uid://tj6n11f4oan4" path="res://tracks_menu.gd" id="1_mae5d"]
 [ext_resource type="Script" uid="uid://byixniwsoqhb" path="res://cars_menu.gd" id="2_4hy44"]
 [ext_resource type="Script" uid="uid://6mwrigy8jj7c" path="res://start_race.gd" id="3_ytr4m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_Transparent"]
+[ext_resource type="PackedScene" uid="uid://bw8qj3l7m4vh2" path="res://speedometer.tscn" id="4_speedometer"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MenuBackground"]
 bg_color = Color(0.12, 0.15, 0.1, 0.95)
@@ -21,73 +20,51 @@ shadow_color = Color(0, 0, 0, 0.3)
 shadow_size = 4
 shadow_offset = Vector2(2, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TabBackground"]
-bg_color = Color(0.08, 0.12, 0.06, 0.9)
-border_width_left = 2
-border_width_top = 0
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.2, 0.3, 0.15, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TabSelected"]
-bg_color = Color(0.25, 0.4, 0.2, 1)
-border_width_left = 2
-border_width_top = 3
-border_width_right = 2
-border_width_bottom = 0
-border_color = Color(0.2, 0.3, 0.15, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-shadow_color = Color(0, 0, 0, 0.3)
-shadow_size = 3
-shadow_offset = Vector2(0, 2)
-content_margin_left = 12
-content_margin_top = 8
-content_margin_right = 12
-content_margin_bottom = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_Transparent"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TabUnselected"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
 bg_color = Color(0.15, 0.2, 0.12, 0.6)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
-border_width_bottom = 0
 border_color = Color(0.2, 0.3, 0.15, 0.6)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-content_margin_left = 12
-content_margin_top = 8
-content_margin_right = 12
-content_margin_bottom = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_StartButton"]
-bg_color = Color(0.1, 0.6, 0.1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TabBackground"]
+bg_color = Color(0.08, 0.12, 0.06, 0.9)
 border_width_left = 2
-border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.2, 0.8, 0.2, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
+border_color = Color(0.2, 0.3, 0.15, 1)
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TabSelected"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25, 0.4, 0.2, 1)
+border_width_left = 2
+border_width_top = 3
+border_width_right = 2
+border_color = Color(0.2, 0.3, 0.15, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+shadow_color = Color(0, 0, 0, 0.3)
 shadow_size = 3
-shadow_offset = Vector2(1, 2)
-content_margin_left = 20
-content_margin_top = 12
-content_margin_right = 20
-content_margin_bottom = 12
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_StartButtonHover"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
 bg_color = Color(0.15, 0.7, 0.15, 1)
 border_width_left = 2
 border_width_top = 2
@@ -101,10 +78,25 @@ corner_radius_bottom_left = 6
 shadow_color = Color(0, 0, 0, 0.5)
 shadow_size = 4
 shadow_offset = Vector2(1, 3)
-content_margin_left = 20
-content_margin_top = 12
-content_margin_right = 20
-content_margin_bottom = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_StartButton"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.1, 0.6, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.8, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 3
+shadow_offset = Vector2(1, 2)
 
 [node name="Menu" type="VBoxContainer"]
 custom_minimum_size = Vector2(228, 720)
@@ -129,25 +121,23 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="ItemMenuTabs" type="TabContainer" parent="MenuBackground/MenuContent"]
-custom_minimum_size = Vector2(220, 540)
+custom_minimum_size = Vector2(220, 420)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0.5, 0.6, 0.45, 1)
+theme_override_colors/font_unselected_color = Color(0.7, 0.8, 0.65, 1)
+theme_override_colors/font_selected_color = Color(0.9, 1, 0.85, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/side_margin = 8
+theme_override_font_sizes/font_size = 14
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_Transparent")
+theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_TabUnselected")
 theme_override_styles/panel = SubResource("StyleBoxFlat_TabBackground")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_TabSelected")
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_TabUnselected")
-theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_TabUnselected")
-theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_Transparent")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_TabUnselected")
-theme_override_colors/font_selected_color = Color(0.9, 1, 0.85, 1)
-theme_override_colors/font_unselected_color = Color(0.7, 0.8, 0.65, 1)
-theme_override_colors/font_disabled_color = Color(0.5, 0.6, 0.45, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_font_sizes/font_size = 14
-theme_override_constants/side_margin = 8
-theme_override_constants/tab_alignment = 1
-theme_override_constants/outline_size = 0
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_TabUnselected")
+current_tab = 0
 
 [node name="Tracks" type="VBoxContainer" parent="MenuBackground/MenuContent/ItemMenuTabs"]
 layout_mode = 2
@@ -161,8 +151,8 @@ size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MenuContent/ItemMenuTabs/Tracks/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 36
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
@@ -170,8 +160,8 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 32
-theme_override_constants/v_separation = 50
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 16
 columns = 3
 
 [node name="Cars" type="VBoxContainer" parent="MenuBackground/MenuContent/ItemMenuTabs"]
@@ -200,6 +190,13 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
+[node name="SpeedometerContainer" type="CenterContainer" parent="MenuBackground/MenuContent"]
+custom_minimum_size = Vector2(220, 100)
+layout_mode = 2
+
+[node name="Speedometer" parent="MenuBackground/MenuContent/SpeedometerContainer" instance=ExtResource("4_speedometer")]
+layout_mode = 2
+
 [node name="BottomControls" type="HBoxContainer" parent="MenuBackground/MenuContent"]
 custom_minimum_size = Vector2(220, 60)
 layout_mode = 2
@@ -212,12 +209,12 @@ size_flags_horizontal = 3
 [node name="StartRaceButton" type="Button" parent="MenuBackground/MenuContent/BottomControls"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "Start Race"
-theme_override_styles/normal = SubResource("StyleBoxFlat_StartButton")
-theme_override_styles/hover = SubResource("StyleBoxFlat_StartButtonHover")
-theme_override_colors/font_color = Color(0.95, 1, 0.9, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.95, 1, 0.9, 1)
 theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxFlat_StartButtonHover")
+theme_override_styles/normal = SubResource("StyleBoxFlat_StartButton")
+text = "Start Race"
 script = ExtResource("3_ytr4m")
 
 [node name="RightSpacer" type="Control" parent="MenuBackground/MenuContent/BottomControls"]

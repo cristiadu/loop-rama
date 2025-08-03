@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfgl4um5up0v3"
-path="res://.godot/imported/HandPoint.png-3f00993f3a3ca679de92b3b24febf4fc.ctex"
+uid="uid://dkx0sycujvawq"
+path="res://.godot/imported/speedometer_mid.png-0c32ad6fe2e72d3bc9c5becdbbd318df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/HandPoint.png"
-dest_files=["res://.godot/imported/HandPoint.png-3f00993f3a3ca679de92b3b24febf4fc.ctex"]
+source_file="res://assets/images/speedometers/speedometer_mid.png"
+dest_files=["res://.godot/imported/speedometer_mid.png-0c32ad6fe2e72d3bc9c5becdbbd318df.ctex"]
 
 [params]
 

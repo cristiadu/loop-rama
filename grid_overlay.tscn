@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqc8x7y2n8kqp"]
+
+[ext_resource type="Script" path="res://grid_overlay.gd" id="1_grid_overlay"]
+
+[node name="GridOverlay" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_grid_overlay")
+grid_line_color = Color(1, 1, 1, 1)
+grid_line_opacity = 0.3
+grid_line_width = 1.0
+preview_fill_color = Color(0.2, 0.5, 0.8, 1)
+preview_fill_opacity = 0.5
+preview_border_color = Color(0.1, 0.4, 0.7, 1)
+preview_border_opacity = 0.9
+preview_border_width = 2.0

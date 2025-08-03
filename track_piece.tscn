@@ -1,15 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnjhyewkv712u"]
+[gd_scene load_steps=4 format=3 uid="uid://dnjhyewkv712u"]
 
 [ext_resource type="Script" uid="uid://b7pwxxi7xdisc" path="res://track_piece.gd" id="1_mlmpt"]
 [ext_resource type="Texture2D" uid="uid://crhuhxbowlkhh" path="res://assets/images/tracks/straight_road.png" id="2_y4nh4"]
+[ext_resource type="PackedScene" uid="uid://bv8yan2p4q7kr" path="res://rotation_buttons.tscn" id="3_rotation_buttons"]
 
 [node name="TrackPiece" type="Control"]
-custom_minimum_size = Vector2(16, 32)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 16.0
-offset_bottom = 32.0
+
+[node name="TrackPieceContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrackPieceControl" type="Control" parent="TrackPieceContainer"]
+z_index = 1000
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_mlmpt")
 
-[node name="TrackPieceSprite" type="Sprite2D" parent="."]
+[node name="TrackPieceSprite" type="Sprite2D" parent="TrackPieceContainer/TrackPieceControl"]
 texture = ExtResource("2_y4nh4")
+
+[node name="RotationButtons" parent="TrackPieceContainer/TrackPieceControl" instance=ExtResource("3_rotation_buttons")]
+visible = false
+z_index = 2000
+z_as_relative = false
+layout_mode = 0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drsexo2bk58l1"
-path="res://.godot/imported/Speedlow.png-0c8a89f6e7eecba893ccbf27feeae66f.ctex"
+uid="uid://bh2cnnoisf0e6"
+path="res://.godot/imported/speedometer_high.png-f634c52f2a4680ed36f81b892a502c43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Speedlow.png"
-dest_files=["res://.godot/imported/Speedlow.png-0c8a89f6e7eecba893ccbf27feeae66f.ctex"]
+source_file="res://assets/images/speedometers/speedometer_high.png"
+dest_files=["res://.godot/imported/speedometer_high.png-f634c52f2a4680ed36f81b892a502c43.ctex"]
 
 [params]
 

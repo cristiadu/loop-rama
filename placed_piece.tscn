@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c171s01uey"]
+
+[ext_resource type="Script" path="res://placed_piece_component.gd" id="1_placed_piece"]
+
+[node name="PlacedPiece" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_placed_piece")
+
+[node name="PieceSprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)

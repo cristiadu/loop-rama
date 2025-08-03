@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmngu1uufth4e"
-path="res://.godot/imported/Flag.png-5b5574a01ee8308d7c5f7d1b9cd1191a.ctex"
+uid="uid://c3mxbsomhrehi"
+path="res://.godot/imported/hand_button.png-5062575b30d667328928f5c270aa550e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Flag.png"
-dest_files=["res://.godot/imported/Flag.png-5b5574a01ee8308d7c5f7d1b9cd1191a.ctex"]
+source_file="res://assets/images/hands/hand_button.png"
+dest_files=["res://.godot/imported/hand_button.png-5062575b30d667328928f5c270aa550e.ctex"]
 
 [params]
 
