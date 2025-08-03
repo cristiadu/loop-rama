@@ -46,6 +46,22 @@ layout_mode = 2
 script = ExtResource("2_4hy44")
 metadata/_tab_index = 1
 
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemMenuTabs/CarsMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemMenuTabs/CarsMenu/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CarsVBox" type="VBoxContainer" parent="ItemMenuTabs/CarsMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
 [node name="BottomControls" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(228, 60)
 layout_mode = 2

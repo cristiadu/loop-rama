@@ -1,0 +1,152 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm8x7oap2qk1f"]
+
+[ext_resource type="Script" uid="uid://dt6w3vn8nxthr" path="res://car_option.gd" id="1_4m8jx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_default"]
+bg_color = Color(0.2, 0.2, 0.2, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_selected"]
+bg_color = Color(0.3, 0.5, 0.8, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CarOption" type="Button"]
+custom_minimum_size = Vector2(180, 110)
+theme_override_styles/normal = SubResource("StyleBoxFlat_default")
+script = ExtResource("1_4m8jx")
+selected_style = SubResource("StyleBoxFlat_selected")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CarImageContainer" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CarContainer" type="Node2D" parent="MarginContainer/HBoxContainer/CarImageContainer"]
+position = Vector2(20, 30)
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InfoVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="CarName" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Car Name"
+
+[node name="SpeedContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Speed: "
+
+[node name="SpeedStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SpeedStar1" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="SpeedStar2" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="SpeedStar3" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="SpeedStar4" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="SpeedStar5" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="TractionContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TractionLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Traction: "
+
+[node name="TractionStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TractionStar1" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="TractionStar2" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="TractionStar3" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="TractionStar4" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[node name="TractionStar5" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "☆"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

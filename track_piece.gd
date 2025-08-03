@@ -17,6 +17,14 @@ enum TerrainType {
     WET,
 }
 
+class TerrainModifier:
+  var speed: float
+  var stability: float
+  
+  func _init(speed_modifier: float, stability_modifier: float):
+    speed = speed_modifier
+    stability = stability_modifier
+
 # Direct piece data fields
 var piece_type: TrackPieceType
 var terrain_type: TerrainType
@@ -48,6 +56,15 @@ static var track_piece_configs: Dictionary = {
         TerrainType.ROAD: {"path": "res://assets/images/tracks/s_road.png", "width": 2, "height": 2},
         TerrainType.WET: {"path": "res://assets/images/tracks/s_wet.png", "width": 2, "height": 2},
     },
+}
+
+# Terrain modifiers (speed_modifier, stability_modifier)
+static var terrain_modifiers = {
+  TerrainType.ROAD: TerrainModifier.new(1.0, 1.0),      # Best performance
+  TerrainType.DIRT: TerrainModifier.new(0.8, 0.9),      # Slight reduction
+  TerrainType.SAND: TerrainModifier.new(0.6, 0.7),      # Moderate reduction
+  TerrainType.WET: TerrainModifier.new(0.7, 0.6),       # Slippery
+  TerrainType.SNOW: TerrainModifier.new(0.5, 0.5)       # Challenging
 }
 
 @onready var track_piece_sprite: Sprite2D = $TrackPieceSprite
@@ -168,5 +185,5 @@ static func get_available_configurations() -> Dictionary:
 static func has_configuration(type: TrackPieceType, terrain: TerrainType) -> bool:
     return track_piece_configs.has(type) and track_piece_configs[type].has(terrain)
 
-func _ready():
-    pass
+func get_terrain_modifiers() -> TerrainModifier:
+    return terrain_modifiers[terrain_type]
