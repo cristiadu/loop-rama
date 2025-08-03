@@ -1,22 +1,8 @@
 extends Button
 class_name CarOption
 
-@onready var car_container = $MarginContainer/HBoxContainer/CarImageContainer/CarContainer
-@onready var car_name_label = $MarginContainer/HBoxContainer/InfoVBox/CarName
-
-# Speed star references
-@onready var speed_star1 = $MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar1
-@onready var speed_star2 = $MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar2
-@onready var speed_star3 = $MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar3
-@onready var speed_star4 = $MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar4
-@onready var speed_star5 = $MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar5
-
-# Traction star references
-@onready var traction_star1 = $MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar1
-@onready var traction_star2 = $MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar2
-@onready var traction_star3 = $MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar3
-@onready var traction_star4 = $MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar4
-@onready var traction_star5 = $MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar5
+# Template scene for individual car options
+# Dynamically instantiated by CarsMenu when needed
 
 # Car scene reference
 const CAR_SCENE = preload("res://car.tscn")
@@ -24,34 +10,44 @@ const CAR_SCENE = preload("res://car.tscn")
 # Style reference from scene
 @export var selected_style: StyleBoxFlat
 
-var car_type: CarsMenu.CarType
-var car_data: Dictionary
+var car_type: Car.CarType
+var car_data: Car.CarData
 var car_instance: Car
 var is_selected: bool = false
 
-signal car_option_selected(car_type: CarsMenu.CarType)
+signal car_option_selected(car_type: Car.CarType)
 
-func setup_car_option(type: CarsMenu.CarType, data: Dictionary):
+func setup_car_option(type: Car.CarType):
   car_type = type
-  car_data = data
   
   # Create car instance
   car_instance = CAR_SCENE.instantiate()
-  car_instance.setup_car(type, data)
+  car_data = car_instance.setup_car(type)
   car_instance.scale = Vector2(1.6, 1.6)  # Scale appropriately for menu
-  car_container.add_child(car_instance)
+  
+  # Get car container directly since @onready vars aren't ready yet
+  var container = get_node("MarginContainer/HBoxContainer/CarImageContainer/CarContainer")
+  container.add_child(car_instance)
   
   # Set car name
-  car_name_label.text = data.name
+  var name_label = get_node("MarginContainer/HBoxContainer/InfoVBox/CarName")
+  name_label.text = car_data.name
   
   # Update speed stars
-  update_speed_stars(data.potency)
+  update_speed_stars(car_data.potency)
   
   # Update traction stars
-  update_traction_stars(data.traction)
+  update_traction_stars(car_data.traction)
 
 func update_speed_stars(rating: int):
-  var speed_stars = [speed_star1, speed_star2, speed_star3, speed_star4, speed_star5]
+  # Get speed stars directly since @onready vars aren't ready yet during setup
+  var speed_stars = [
+    get_node("MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar1"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar2"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar3"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar4"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/SpeedContainer/SpeedStars/SpeedStar5")
+  ]
   for i in range(5):
     var star = speed_stars[i]
     if i < rating:
@@ -62,7 +58,14 @@ func update_speed_stars(rating: int):
       star.modulate = Color.GRAY
 
 func update_traction_stars(rating: int):
-  var traction_stars = [traction_star1, traction_star2, traction_star3, traction_star4, traction_star5]
+  # Get traction stars directly since @onready vars aren't ready yet during setup
+  var traction_stars = [
+    get_node("MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar1"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar2"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar3"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar4"),
+    get_node("MarginContainer/HBoxContainer/InfoVBox/TractionContainer/TractionStars/TractionStar5")
+  ]
   for i in range(5):
     var star = traction_stars[i]
     if i < rating:

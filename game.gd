@@ -8,7 +8,7 @@ func _ready():
 
 func start_game():
     tracks_menu.generate_track_piece_options()
-    # Cars menu initializes itself in _ready()
+    cars_menu.generate_car_options()
 
 func end_game():
     pass
