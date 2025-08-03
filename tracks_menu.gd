@@ -1,20 +1,35 @@
 extends VBoxContainer
 
-@onready var track_piece_scene = preload("res://track_piece.tscn")
+@onready var track_piece_scene = preload("res://track_piece_option.tscn")
+@onready var start_flag_piece_scene = preload("res://start_flag_piece.tscn")
 @onready var grid_container: GridContainer = $ScrollContainer/MarginContainer/GridContainer
 
 const INITIAL_TRACK_PIECE_COUNT = 15
 
-# Draw initial track pieces in the track menu.
-func generate_track_piece_options():
-  # Call track piece scene to generate track pieces in a grid layout
-  for i in INITIAL_TRACK_PIECE_COUNT:
-    draw_track_piece()
+# Generate menu options using scene-based approach
+func generate_menu_options():
+    # Clear existing options
+    clear_menu()
+    
+    # Generate track piece options
+    for i in INITIAL_TRACK_PIECE_COUNT:
+        create_track_piece_option()
+    
+    # Add start flag option
+    create_start_flag_option()
 
-# Draw a track piece in the track menu.
-func draw_track_piece():
-  var track_piece = track_piece_scene.instantiate()
-  grid_container.add_child(track_piece)
-  track_piece.setup_random_piece()
-  # Connect signals for drag and drop functionality (to be implemented later)
-  #track_piece.gui_input.connect(_on_track_piece_input.bind(track_piece))
+func create_track_piece_option():
+    var track_piece_container = track_piece_scene.instantiate()
+    grid_container.add_child(track_piece_container)
+    var track_piece = track_piece_container.get_node("TrackPiece/TrackPieceControl")
+    track_piece.setup_random_piece()
+
+func create_start_flag_option():
+    var start_flag_container = start_flag_piece_scene.instantiate()
+    grid_container.add_child(start_flag_container)
+    var start_flag_piece = start_flag_container.get_node("StartFlagControl")
+    start_flag_piece.setup_start_flag_piece()
+
+func clear_menu():
+    for child in grid_container.get_children():
+        child.queue_free()

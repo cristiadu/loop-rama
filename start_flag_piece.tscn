@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkq2vxr8k7nt"]
+
+[ext_resource type="Script" path="res://start_flag_piece.gd" id="1_start_flag"]
+[ext_resource type="Texture2D" path="res://assets/images/start_flag.png" id="2_start_flag_texture"]
+
+[node name="StartFlagPiece" type="CenterContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="StartFlagControl" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("1_start_flag")
+
+[node name="StartFlagSprite" type="Sprite2D" parent="StartFlagControl"]
+texture = ExtResource("2_start_flag_texture")

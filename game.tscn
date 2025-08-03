@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dev7lq6r3vnd2"]
+[gd_scene load_steps=6 format=3 uid="uid://dev7lq6r3vnd2"]
 
 [ext_resource type="Script" uid="uid://boetqyvtr47yp" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://dlf41bnj1s02a" path="res://assets/images/park.png" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://0tbn0455v0gi" path="res://track_grid.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cb3uxatfyturd" path="res://menu.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bxkj7doxf2h5e" path="res://hand_button.tscn" id="4_hand_button"]
 
 [node name="LoopRamaGame" type="Node2D"]
 script = ExtResource("1_fc0e3")
@@ -19,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ParkBackground" type="Sprite2D" parent="UI/MainUI"]
+z_index = -100
 position = Vector2(640, 360)
 texture = ExtResource("1_feb5d")
 
@@ -32,3 +34,48 @@ layout_mode = 2
 
 [node name="Menu" parent="UI/MainUI/MainContent" instance=ExtResource("3_feb5d")]
 layout_mode = 2
+
+[node name="SelectedCarDisplay" type="Control" parent="UI/MainUI"]
+anchors_preset = 0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 398.0
+offset_bottom = 62.0
+
+[node name="SelectedCarLabel" type="Label" parent="UI/MainUI/SelectedCarDisplay"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 5.0
+offset_right = 170.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
+text = "Selected Car:"
+
+[node name="SelectedCarName" type="Label" parent="UI/MainUI/SelectedCarDisplay"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "Blue Racer"
+
+[node name="SelectedCarSprite" type="Control" parent="UI/MainUI/SelectedCarDisplay"]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 65.0
+
+[node name="HandButton" parent="UI/MainUI" instance=ExtResource("4_hand_button")]
+layout_mode = 0
+offset_left = 966.0
+offset_top = 598.0
+offset_right = 1094.0
+offset_bottom = 726.0

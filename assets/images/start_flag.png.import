@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh2cnnoisf0e6"
-path="res://.godot/imported/Speedhigh.png-2d7c7860918a695bb363d312e7c328ec.ctex"
+uid="uid://dmngu1uufth4e"
+path="res://.godot/imported/start_flag.png-6b9f1865e19c659e8973bbe52a24cfd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Speedhigh.png"
-dest_files=["res://.godot/imported/Speedhigh.png-2d7c7860918a695bb363d312e7c328ec.ctex"]
+source_file="res://assets/images/start_flag.png"
+dest_files=["res://.godot/imported/start_flag.png-6b9f1865e19c659e8973bbe52a24cfd3.ctex"]
 
 [params]
 
