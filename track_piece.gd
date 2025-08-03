@@ -300,29 +300,19 @@ func _get_drag_data(position):
         "track_piece_control": self  # Keep reference to the script node
     }
     
-    # Create a properly centered drag preview
+    # Create a simple drag preview 
     var preview = Control.new()
-    var preview_sprite = Sprite2D.new()
+    preview.size = Vector2(32, 32)  # Small fixed size
     
-    # Set up the preview sprite to match this piece
     if track_piece_sprite and track_piece_sprite.texture:
+        var preview_sprite = Sprite2D.new()
         preview_sprite.texture = track_piece_sprite.texture
         preview_sprite.rotation_degrees = current_rotation
-        
-        # Get the actual size of the rotated piece
-        var rotated_size = get_rotated_size()
-        var preview_size = Vector2(rotated_size.x * GRID_SIZE, rotated_size.y * GRID_SIZE)
-        
-        # Create a larger control to allow for proper centering
-        preview.size = preview_size * 2  # Make it larger
-        
-        # Center the sprite within this larger control
-        preview_sprite.position = preview.size / 2
-        
+        preview_sprite.position = Vector2(16, 16)  # Center in the small control
+        preview_sprite.modulate = Color(1, 1, 1, 0.8)
         preview.add_child(preview_sprite)
-        
-        # The preview will now be centered on the mouse cursor
-        set_drag_preview(preview)
+    
+    set_drag_preview(preview)
     
     # Hide the entire container during drag (keep it in menu until successful drop)
     container.visible = false
