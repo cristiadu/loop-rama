@@ -35,6 +35,33 @@ layout_mode = 2
 [node name="Menu" parent="UI/MainUI/MainContent" instance=ExtResource("3_feb5d")]
 layout_mode = 2
 
+[node name="SelectedCarDisplay" type="Control" parent="UI/MainUI"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 30.0
+offset_right = 350.0
+offset_bottom = 100.0
+
+[node name="SelectedCarLabel" type="Label" parent="UI/MainUI/SelectedCarDisplay"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 0.0
+offset_right = 300.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "Selected Car: Blue Racer"
+
+[node name="SelectedCarSprite" type="Control" parent="UI/MainUI/SelectedCarDisplay"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 60.0
+offset_bottom = 60.0
+
 [node name="HandButton" parent="UI/MainUI" instance=ExtResource("4_hand_button")]
 layout_mode = 0
 offset_left = 966.0
