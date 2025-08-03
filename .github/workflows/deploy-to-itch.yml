@@ -76,7 +76,7 @@ jobs:
       run: |
         godot -v -e --quit --headless
         mkdir -v -p build/web
-        godot -v --export-release --headless "web" build/web/index.html
+        godot -v --export-release --headless "Web" build/web/index.html
     - name: itchio-web
       uses: manleydev/butler-publish-itchio-action@master
       env:
