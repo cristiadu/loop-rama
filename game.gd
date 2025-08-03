@@ -4,6 +4,7 @@ extends Node2D
 @onready var cars_menu = $UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/ItemMenuTabs/Cars
 @onready var speedometer = $UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/SpeedometerContainer/Speedometer
 @onready var selected_car_label = $UI/MainUI/SelectedCarDisplay/SelectedCarLabel
+@onready var selected_car_name = $UI/MainUI/SelectedCarDisplay/SelectedCarName
 @onready var selected_car_sprite_container = $UI/MainUI/SelectedCarDisplay/SelectedCarSprite
 
 var current_car_sprite: Car
@@ -38,10 +39,10 @@ func _on_car_selected(car_type: Car.CarType):
 
 # Update the selected car display in the grass area
 func update_selected_car_display():
-    if selected_car_label and cars_menu.selected_car != null:
-        # Update label text
+    if selected_car_name and cars_menu.selected_car != null:
+        # Update car name text only
         var car_name = Car.car_configs[cars_menu.selected_car].name
-        selected_car_label.text = "Selected Car: " + car_name
+        selected_car_name.text = car_name
         
         # Update car sprite
         update_selected_car_sprite()
@@ -57,7 +58,8 @@ func update_selected_car_sprite():
     const CAR_SCENE = preload("res://car.tscn")
     current_car_sprite = CAR_SCENE.instantiate()
     current_car_sprite.setup_car(cars_menu.selected_car)
-    current_car_sprite.scale = Vector2(1.8, 1.8)  # Scale for visibility
+    current_car_sprite.scale = Vector2(1.5, 1.5)  # Bigger size for better visibility
+    current_car_sprite.position = Vector2(30, 30)  # Center in the 60x60 container
     selected_car_sprite_container.add_child(current_car_sprite)
 
 # Update speedometer based on current car and terrain

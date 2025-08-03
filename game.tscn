@@ -36,31 +36,42 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SelectedCarDisplay" type="Control" parent="UI/MainUI"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 30.0
-offset_right = 350.0
-offset_bottom = 100.0
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 70.0
 
 [node name="SelectedCarLabel" type="Label" parent="UI/MainUI/SelectedCarDisplay"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 0.0
-offset_right = 300.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.8)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 16
-text = "Selected Car: Blue Racer"
+offset_left = 70.0
+offset_top = 5.0
+offset_right = 170.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
+text = "Selected Car:"
+
+[node name="SelectedCarName" type="Label" parent="UI/MainUI/SelectedCarDisplay"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "Blue Racer"
 
 [node name="SelectedCarSprite" type="Control" parent="UI/MainUI/SelectedCarDisplay"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 60.0
-offset_bottom = 60.0
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 65.0
 
 [node name="HandButton" parent="UI/MainUI" instance=ExtResource("4_hand_button")]
 layout_mode = 0
