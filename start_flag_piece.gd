@@ -5,14 +5,13 @@ const GRID_SIZE = 16
 
 # Start flag specific properties
 var width_units: int = 1  # Width in grid units (16px each)
-var height_units: int = 2 # Height in grid units (16px each)
-var current_rotation: int = 0 # Rotation in degrees (must be multiple of 90)
+var height_units: int = 1 # Height in grid units (16px each) - start flag is 1x1
+# Start flags don't rotate
 
 @onready var start_flag_sprite: Sprite2D = $StartFlagSprite
 
 # Initialize the start flag piece
 func setup_start_flag_piece():
-    _apply_rotation()
     _update_size()
 
 # Return actual width accounting for rotation
@@ -25,24 +24,13 @@ func get_actual_height() -> int:
     var rotated_size = get_rotated_size()
     return rotated_size.y * GRID_SIZE
 
-# Return size considering current rotation
+# Return size (start flags don't rotate)
 func get_rotated_size() -> Vector2i:
-    if current_rotation % 180 == 0:
-        return Vector2i(width_units, height_units)
-    else:
-        return Vector2i(height_units, width_units)
+    return Vector2i(width_units, height_units)
 
 
 
-# Apply rotation to the sprite
-func _apply_rotation():
-    # Normalize rotation to 0-359 range
-    current_rotation = current_rotation % 360
-    if current_rotation < 0:
-        current_rotation += 360
-    
-    # Apply rotation to sprite
-    start_flag_sprite.rotation_degrees = current_rotation
+# Start flags don't rotate, so no rotation logic needed
 
 # Update the control size based on piece dimensions and rotation
 func _update_size():
@@ -58,28 +46,16 @@ func _update_size():
     if start_flag_sprite:
         start_flag_sprite.position = Vector2(actual_width / 2.0, actual_height / 2.0)
 
-# Rotate the piece by 90 degrees
-func rotate_piece():
-    current_rotation += 90
-    _apply_rotation()
-    _update_size()
-
-# Set specific rotation
-func set_piece_rotation(degrees: int):
-    current_rotation = degrees
-    _apply_rotation()
-    _update_size()
+# Start flags don't rotate
 
 # Get current piece info
 func get_piece_info() -> Dictionary:
-    var rotated_size = get_rotated_size()
     return {
         "type": "START_FLAG",
-        "width_units": rotated_size.x,
-        "height_units": rotated_size.y,
-        "actual_width": rotated_size.x * GRID_SIZE,
-        "actual_height": rotated_size.y * GRID_SIZE,
-        "rotation": current_rotation
+        "width_units": width_units,
+        "height_units": height_units,
+        "actual_width": width_units * GRID_SIZE,
+        "actual_height": height_units * GRID_SIZE
     }
 
 # Different dropping behavior - start flags can only be placed once per track
@@ -107,10 +83,19 @@ func _ready():
     setup_start_flag_piece()
 
 var drag_allowed: bool = false
+var is_placed_on_grid: bool = false
+var is_selected: bool = false
+var associated_car: Car = null  # Reference to the car placed with this start flag
 
 func _gui_input(event):
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-        # Check if click is within sprite bounds
+        # If piece is placed on grid, handle selection instead of drag
+        if is_placed_on_grid:
+            drag_allowed = false
+            _toggle_selection()
+            return
+            
+        # Check if click is within sprite bounds for dragging
         var sprite_rect = Rect2(start_flag_sprite.position - start_flag_sprite.texture.get_size()/2, start_flag_sprite.texture.get_size())
         if sprite_rect.has_point(event.position):
             drag_allowed = true
@@ -142,3 +127,46 @@ func _notification(what):
     if what == NOTIFICATION_DRAG_END:
         # Restore visibility if drag was cancelled
         visible = true
+
+# Toggle selection state of the piece
+func _toggle_selection():
+    is_selected = !is_selected
+    
+    if is_selected:
+        # Visual feedback for selection (optional)
+        modulate = Color(1.2, 1.2, 1.2, 1.0)  # Slightly brighter
+        # Deselect other pieces (tell the grid to handle this)
+        _notify_grid_of_selection()
+    else:
+        modulate = Color(1.0, 1.0, 1.0, 1.0)  # Normal color
+
+# Deselect this piece (called by grid when another piece is selected)
+func deselect():
+    is_selected = false
+    modulate = Color(1.0, 1.0, 1.0, 1.0)  # Normal color
+
+# Notify grid of selection for deselecting other pieces
+func _notify_grid_of_selection():
+    var grid = get_tree().get_first_node_in_group("track_grid")
+    if grid and grid.has_method("on_piece_selected"):
+        grid.on_piece_selected(self)
+
+# Disable drag functionality when placed on grid
+func disable_drag_only():
+    is_placed_on_grid = true
+    # Keep mouse filter as PASS so selection can still work
+    mouse_filter = Control.MOUSE_FILTER_PASS
+
+# Set the associated car for this start flag
+func set_associated_car(car: Car):
+    associated_car = car
+
+# Get the associated car
+func get_associated_car() -> Car:
+    return associated_car
+
+# Remove the associated car
+func remove_associated_car():
+    if associated_car:
+        associated_car.queue_free()
+        associated_car = null
