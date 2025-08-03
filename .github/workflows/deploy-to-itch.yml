@@ -33,7 +33,7 @@ jobs:
   linux-builder:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.0.3
+      image: barichello/godot-ci:4.4.1
     steps:
     - uses: actions/checkout@v2
     - name: build-linux
@@ -54,7 +54,7 @@ jobs:
   macos-builder:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.0.3
+      image: barichello/godot-ci:4.4.1
     steps:
     - uses: actions/checkout@v2
     - name: build-mac
@@ -75,7 +75,7 @@ jobs:
   web-builder:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.0.3
+      image: barichello/godot-ci:4.4.1
     steps:
     - uses: actions/checkout@v2
     - name: build-web

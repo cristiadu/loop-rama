@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bw8qj3l7m4vh2"]
 
-[ext_resource type="Script" uid="uid://speedometer_script" path="res://speedometer.gd" id="1_speedometer_script"]
+[ext_resource type="Script" path="res://speedometer.gd" id="1_speedometer_script"]
 [ext_resource type="Texture2D" uid="uid://bh2cnnoisf0e6" path="res://assets/images/speedometers/speedometer_high.png" id="2_speedometer_high"]
 [ext_resource type="Texture2D" uid="uid://dkx0sycujvawq" path="res://assets/images/speedometers/speedometer_mid.png" id="3_speedometer_mid"]
 [ext_resource type="Texture2D" uid="uid://drsexo2bk58l1" path="res://assets/images/speedometers/speedometer_low.png" id="4_speedometer_low"]
@@ -8,12 +8,35 @@
 [sub_resource type="SystemFont" id="SystemFont_pixel"]
 font_names = PackedStringArray("Courier New", "Monaco", "Consolas", "monospace")
 antialiasing = 0
-generate_mipmaps = false
 allow_system_fallback = false
-force_autohinter = false
 hinting = 0
 subpixel_positioning = 0
 oversampling = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_speed"]
+font = SubResource("SystemFont_pixel")
+font_size = 22
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_RESET"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpeedometerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_speedometer_mid")]
+}
 
 [sub_resource type="Animation" id="Animation_gaining_speed"]
 resource_name = "gaining_speed"
@@ -63,48 +86,20 @@ tracks/0/keys = {
 "values": [ExtResource("4_speedometer_low")]
 }
 
-[sub_resource type="Animation" id="Animation_RESET"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpeedometerSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_speedometer_mid")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_speedometer"]
 _data = {
-"RESET": SubResource("Animation_RESET"),
-"gaining_speed": SubResource("Animation_gaining_speed"),
-"keeping_speed": SubResource("Animation_keeping_speed"),
-"losing_speed": SubResource("Animation_losing_speed")
+&"RESET": SubResource("Animation_RESET"),
+&"gaining_speed": SubResource("Animation_gaining_speed"),
+&"keeping_speed": SubResource("Animation_keeping_speed"),
+&"losing_speed": SubResource("Animation_losing_speed")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_speed"]
-font = SubResource("SystemFont_pixel")
-font_size = 24
-font_color = Color(1, 1, 1, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 2
-shadow_color = Color(0.2, 0.2, 0.2, 1)
-shadow_offset = Vector2(2, 2)
 
 [node name="Speedometer" type="Control"]
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
 offset_left = -160.0
 offset_top = 20.0
 offset_right = -20.0
@@ -116,38 +111,28 @@ script = ExtResource("1_speedometer_script")
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.3)
 
 [node name="SpeedometerSprite" type="Sprite2D" parent="."]
 position = Vector2(70, 70)
-scale = Vector2(3.2, 3.2)
+scale = Vector2(1.8, 1.8)
 texture = ExtResource("3_speedometer_mid")
 
 [node name="SpeedLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 45.0
-offset_top = 85.0
-offset_right = 95.0
-offset_bottom = 115.0
-text = "0"
+offset_left = 59.0
+offset_top = 72.0
+offset_right = 109.0
+offset_bottom = 102.0
 label_settings = SubResource("LabelSettings_speed")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_speedometer")
+&"": SubResource("AnimationLibrary_speedometer")
 }
