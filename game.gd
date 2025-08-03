@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var tracks_menu = $UI/MainUI/MainContent/Menu/ItemMenuTabs/TracksMenu
-@onready var cars_menu = $UI/MainUI/MainContent/Menu/ItemMenuTabs/CarsMenu
+@onready var tracks_menu = $UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/ItemMenuTabs/Tracks
+@onready var cars_menu = $UI/MainUI/MainContent/Menu/MenuBackground/MenuContent/ItemMenuTabs/Cars
 
 func _ready():
     start_game()
